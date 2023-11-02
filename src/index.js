@@ -1,8 +1,33 @@
 import restPhoto from './TGF-img.jpeg';
+import contact from './contact';
+import menu from './menu';
 
-function component() {
+function navBar() {
+    // wrapper
+    const header = document.createElement('ul');
+
+    // tabs
+    const home = document.createElement('li');
+    home.textContent = 'Home';
+    home.classList.add('tab','home');
+
+    const menu = document.createElement('li');
+    menu.textContent = 'Menu';
+    menu.classList.add('tab', 'menu');
+
+    const contact = document.createElement('li');
+    contact.textContent = 'Contact';
+    contact.classList.add('tab', 'contact');
+
+    header.append(home, menu, contact);
+
+    return header;
+}
 
 
+function home() {
+
+    
     // headline for home page
     const headline = document.createElement('h1');
     headline.textContent = "La Forchetta d'Oro";
@@ -19,6 +44,28 @@ function component() {
     return [headline, headPhoto, intro];
 }
 
+const content = document.getElementById('content');
 
-// append all elements 
-document.getElementById('content').append(...component());
+// Initial render
+content.append(navBar(),...home());
+
+// Home tab
+document.querySelector('.home').addEventListener('click', () => {
+    console.log('Home was clicked');
+    content.innerHTML = "";
+    content.append(navBar(), ...home()); 
+})
+
+// Menu tab
+document.querySelector('.menu').addEventListener('click', () => {
+    console.log('Menu was clicked');
+    content.innerHTML = "";
+    content.append(navBar(), ...menu());
+})
+
+// Contact Tab
+document.querySelector('.contact').addEventListener('click', () => {
+    console.log('Contact was clicked');
+    content.innerHTML = "";
+    content.append(navBar(), ...contact()); 
+})
