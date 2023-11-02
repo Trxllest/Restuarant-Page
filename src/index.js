@@ -50,10 +50,13 @@ const content = document.getElementById('content');
 content.append(navBar(),...home());
 
 // Home tab
-document.querySelector('.home').addEventListener('click', () => {
+function listen(){
+
+    document.querySelector('.home').addEventListener('click', () => {
     console.log('Home was clicked');
     content.innerHTML = "";
-    content.append(navBar(), ...home()); 
+    content.append(navBar(), ...home());
+    listen(); 
 })
 
 // Menu tab
@@ -61,11 +64,15 @@ document.querySelector('.menu').addEventListener('click', () => {
     console.log('Menu was clicked');
     content.innerHTML = "";
     content.append(navBar(), ...menu());
+    listen(); 
 })
 
 // Contact Tab
 document.querySelector('.contact').addEventListener('click', () => {
     console.log('Contact was clicked');
     content.innerHTML = "";
-    content.append(navBar(), ...contact()); 
-})
+    content.append(navBar(), ...contact());
+    listen();  
+})}
+
+listen();
